@@ -1,7 +1,7 @@
 body{
     margin-left: 16px;
     margin-right: 16px;
-    margin-inline: clamp(16px, 8vw, 170px);
+    margin-inline: clamp(16px, 5vw, 150px);
 
     background: linear-gradient(270deg, #174d8c, #5a708a);
     background-size: 400% 400%;
