@@ -1,0 +1,33 @@
+package com.code.tienda_supertech.services;
+import com.code.tienda_supertech.model.Producto;
+import com.code.tienda_supertech.repository.ProductoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.Optional;
+
+@Service
+public class ProductoServiceImpl implements ProductoService {
+
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    @Override
+    public Producto save(Producto producto) {
+        return productoRepository.save(producto);
+    }
+
+    @Override
+    public Optional<Producto> get(int id) {
+        return productoRepository.findById(id);
+    }
+
+    @Override
+    public void update(Producto producto) {
+        productoRepository.save(producto);
+    }
+
+    @Override
+    public void delete(int id) {
+        productoRepository.deleteById(id);
+    }
+}
