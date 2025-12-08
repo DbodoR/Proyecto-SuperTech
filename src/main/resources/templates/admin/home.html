@@ -11,11 +11,11 @@
     <link th:href="@{https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap}" rel="stylesheet">
 </head>
 <body>
-    <div th:include="admin/template_admin.html :: header"></div>
+    <div th:insert="~{admin/template_admin.html :: header}"></div>
 
 
 
-    <div th:include="admin/template_admin.html :: footer"></div>
+    <div th:insert="~{admin/template_admin.html :: footer}"></div>
 
     <script th:src="@{js/jquery-3.7.1.min.js}"></script>
     <script th:src="@{js/bootstrap.bundle.min.js}"></script>

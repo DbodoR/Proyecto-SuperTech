@@ -14,7 +14,7 @@
 
 <body>
 
-    <div th:include="admin/template_admin.html :: header"></div>
+<div th:insert="~{admin/template_admin.html :: header}"></div>
 
 <!-- Page Content -->
 <div class="container">
@@ -26,11 +26,11 @@
   </h1>
 
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+    <li class="breadcrumb-item"><a th:href="@{/admin}">Home</a></li>
     <li class="breadcrumb-item active">Ver Productos</li>
   </ol>
 
-  <a class="btn btn-primary" href="#" > Crear Producto</a>
+  <a class="btn btn-primary" th:href="@{/productos/create}" > Crear Producto</a>
   <h2>Productos</h2>
   <table class="table">
     <thead>
@@ -57,7 +57,7 @@
 
 </div>
 
-<div th:include="admin/template_admin.html :: footer"></div>
+<div th:inset="~{admin/template_admin.html :: footer}"></div>
 
 <script th:src="@{js/jquery-3.7.1.min.js}"></script>
 <script th:src="@{js/bootstrap.bundle.min.js}"></script>
