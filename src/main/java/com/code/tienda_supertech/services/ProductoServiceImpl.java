@@ -3,6 +3,8 @@ import com.code.tienda_supertech.model.Producto;
 import com.code.tienda_supertech.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,5 +31,10 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public void delete(int id) {
         productoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Producto> findAll() {
+        return productoRepository.findAll();
     }
 }
