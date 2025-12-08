@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class DetalleOrden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String nombre;
     private double cantidad;
     private double precio;
@@ -22,7 +22,7 @@ public class DetalleOrden {
     public DetalleOrden() {
     }
 
-    public DetalleOrden(int id, String nombre, double cantidad, double precio, double total) {
+    public DetalleOrden(Integer id, String nombre, double cantidad, double precio, double total) {
         this.id = id;
         this.nombre = nombre;
         this.cantidad = cantidad;
@@ -30,11 +30,11 @@ public class DetalleOrden {
         this.total = total;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

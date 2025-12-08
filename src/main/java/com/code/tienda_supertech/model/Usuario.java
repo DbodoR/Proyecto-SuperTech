@@ -9,7 +9,7 @@ import java.util.List;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String nombre;
     private String usuario;
     private String email;
@@ -27,7 +27,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int id, String nombre, String usuario, String email, String direccion, String telefono, String type, String password) {
+    public Usuario(Integer id, String nombre, String usuario, String email, String direccion, String telefono, String type, String password) {
         this.id = id;
         this.nombre = nombre;
         this.usuario = usuario;
@@ -38,11 +38,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
