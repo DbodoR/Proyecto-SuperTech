@@ -3,7 +3,9 @@ package com.code.tienda_supertech.controllers;
 import com.code.tienda_supertech.model.DetalleOrden;
 import com.code.tienda_supertech.model.Orden;
 import com.code.tienda_supertech.model.Producto;
-import com.code.tienda_supertech.services.ProductoService;
+import com.code.tienda_supertech.model.Usuario;
+import com.code.tienda_supertech.services.IProductoService;
+import com.code.tienda_supertech.services.IUsuarioService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,10 @@ public class HomeController {
     private final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     @Autowired
-    private ProductoService productoService;
+    private IProductoService productoService;
+
+    @Autowired
+    private IUsuarioService usuarioService;
 
     private List<DetalleOrden> detalleOrdenes = new ArrayList<DetalleOrden>();
 
@@ -110,7 +115,12 @@ public class HomeController {
     }
 
     @GetMapping("/order")
-    public String order(){
+    public String order(Model model) {
+        Usuario usuario = usuarioService.findById(1).get();
+
+        model.addAttribute("cart", detalleOrdenes);
+        model.addAttribute("orden", orden);
+        model.addAttribute("usuario", usuario);
 
         return "usuario/resumenorden";
     }

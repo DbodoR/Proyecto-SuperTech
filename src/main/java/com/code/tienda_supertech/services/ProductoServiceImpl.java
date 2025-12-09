@@ -1,6 +1,6 @@
 package com.code.tienda_supertech.services;
 import com.code.tienda_supertech.model.Producto;
-import com.code.tienda_supertech.repository.ProductoRepository;
+import com.code.tienda_supertech.repository.IProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductoServiceImpl implements ProductoService {
+public class ProductoServiceImpl implements IProductoService {
 
     @Autowired
-    private ProductoRepository productoRepository;
+    private IProductoRepository productoRepository;
 
     @Override
     public Producto save(Producto producto) {
