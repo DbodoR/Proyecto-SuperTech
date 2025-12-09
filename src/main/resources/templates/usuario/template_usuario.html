@@ -34,6 +34,30 @@
     </nav>
 </div>
 
+<div th:fragment="header-user">
+    <nav class="navbar navbar-expand-lg sticky-top roboto-navbar" width="100%">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}">SuperTech</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup1"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup1">
+                <form class="d-flex my-2 my-lg-0 mx-auto" role="search" method="post" th:action="@{/search}"
+                      style="width: 100%; max-width: 400px;">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" th:href="@{/getCart}">Carrito</a>
+                    <a class="nav-link" th:href="@{/usuario/cerrar}">Salir</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
 
   <div th:fragment="footer">
       <footer class="py-5 bg-dark fixed-bottom">
