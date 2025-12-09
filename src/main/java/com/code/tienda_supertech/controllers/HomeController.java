@@ -4,6 +4,8 @@ import com.code.tienda_supertech.model.DetalleOrden;
 import com.code.tienda_supertech.model.Orden;
 import com.code.tienda_supertech.model.Producto;
 import com.code.tienda_supertech.model.Usuario;
+import com.code.tienda_supertech.services.IDetalleOrdenService;
+import com.code.tienda_supertech.services.IOrdenService;
 import com.code.tienda_supertech.services.IProductoService;
 import com.code.tienda_supertech.services.IUsuarioService;
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +31,12 @@ public class HomeController {
 
     @Autowired
     private IUsuarioService usuarioService;
+
+    @Autowired
+    private IOrdenService ordenService;
+
+    @Autowired
+    private IDetalleOrdenService detalleOrdenService;
 
     private List<DetalleOrden> detalleOrdenes = new ArrayList<DetalleOrden>();
 
@@ -123,5 +132,27 @@ public class HomeController {
         model.addAttribute("usuario", usuario);
 
         return "usuario/resumenorden";
+    }
+
+    @GetMapping("/saveOrder")
+    public String saveOrder(Model model) {
+        Date fechaCreacion = new Date();
+        orden.setFechaCreacion(fechaCreacion);
+        orden.setNumero(ordenService.generarNumeroOrden());
+
+        Usuario usuario = usuarioService.findById(1).get();
+
+        orden.setUsuario(usuario);
+        ordenService.save(orden);
+
+        for (DetalleOrden dt : detalleOrdenes) {
+            dt.setOrden(orden);
+            detalleOrdenService.save(dt);
+        }
+
+        orden = new Orden();
+        detalleOrdenes.clear();
+
+        return "redirect:/";
     }
 }

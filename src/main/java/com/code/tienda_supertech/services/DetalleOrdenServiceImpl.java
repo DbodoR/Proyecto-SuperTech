@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DetalleOrdenServiceImpl implements IDetallerOrdenService{
+public class DetalleOrdenServiceImpl implements IDetalleOrdenService {
 
     @Autowired
     private IDetalleOrdenRepository detalleOrdenRepository;
