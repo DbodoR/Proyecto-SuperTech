@@ -3,7 +3,10 @@ package com.code.tienda_supertech.controllers;
 import com.code.tienda_supertech.model.Producto;
 import com.code.tienda_supertech.model.Usuario;
 import com.code.tienda_supertech.services.IProductoService;
+import com.code.tienda_supertech.services.IUsuarioService;
 import com.code.tienda_supertech.services.UploadFileService;
+import com.code.tienda_supertech.services.UsuarioServiceImpl;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +29,9 @@ public class ProductoController {
     @Autowired
     private UploadFileService upload;
 
+    @Autowired
+    private IUsuarioService usuarioService;
+
     @GetMapping("")
     public String show(Model model){
         model.addAttribute("productos", productoService.findAll());
@@ -38,9 +44,10 @@ public class ProductoController {
     }
 
     @PostMapping("/save")
-    public String save(Producto producto,@RequestParam("img") MultipartFile file) throws IOException {
+    public String save(Producto producto, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
         logger.info("Este es el objeto producto {}",producto);
-        Usuario u = new Usuario(1, "", "", "", "", "", "", "");
+
+        Usuario u = usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
         producto.setUsuario(u);
 
         if (producto.getId() == null){
