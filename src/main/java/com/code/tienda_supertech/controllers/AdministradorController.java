@@ -1,5 +1,6 @@
 package com.code.tienda_supertech.controllers;
 
+import com.code.tienda_supertech.services.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.code.tienda_supertech.model.Producto;
@@ -17,6 +18,9 @@ public class AdministradorController {
     @Autowired
     private IProductoService productoService;
 
+    @Autowired
+    private IUsuarioService usuarioService;
+
     @GetMapping("")
     public String home(Model model) {
 
@@ -24,5 +28,12 @@ public class AdministradorController {
         model.addAttribute("productos", productos);
 
         return "admin/home";
+    }
+
+    @GetMapping("/usuarios")
+    public String usuarios(Model model){
+        model.addAttribute("usuarios", usuarioService.findAll());
+
+        return "admin/usuarios";
     }
 }
