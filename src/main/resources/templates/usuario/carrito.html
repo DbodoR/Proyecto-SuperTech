@@ -64,7 +64,8 @@
 
             <ul class="list-group">
               <li class="list-group-item"><h5 th:text="${orden.total}"></h5></li>
-              <a th:href="@{/order}" class="btn btn-dark">Ver Orden</a>
+              <a th:href="@{/usuario/login}" th:if="${sesion==null}" class="btn btn-dark">Inicia sesion para proseguir</a>
+              <a th:href="@{/order}" th:unless="${sesion==null}" class="btn btn-dark">Ver Orden</a>
             </ul>
           </div>
 
