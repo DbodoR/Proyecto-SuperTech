@@ -101,7 +101,7 @@ public class HomeController {
     }
 
     @GetMapping("/detele/cart/{id}")
-    public String deleteProducto(@PathVariable Integer id, Model model) {
+    public String deleteProducto(@PathVariable Integer id, Model model, HttpSession session) {
         List<DetalleOrden> ordenesNuevas = new ArrayList<DetalleOrden>();
 
         for (DetalleOrden detalleOrden : detalleOrdenes) {
@@ -119,6 +119,8 @@ public class HomeController {
         orden.setTotal(sumaTotal);
         model.addAttribute("cart", detalleOrdenes);
         model.addAttribute("orden", orden);
+
+        model.addAttribute("sesion", session.getAttribute("idusuario"));
 
         return "usuario/carrito";
     }
@@ -140,6 +142,7 @@ public class HomeController {
         model.addAttribute("cart", detalleOrdenes);
         model.addAttribute("orden", orden);
         model.addAttribute("usuario", usuario);
+        model.addAttribute("sesion", session.getAttribute("idusuario"));
 
         return "usuario/resumenorden";
     }
@@ -196,7 +199,7 @@ public class HomeController {
     @PostMapping("/search")
     public String searchProducto(@RequestParam String t, Model model){
         logger.info("nombre del producto: {}", t);
-        List<Producto> productos = productoService.findAll().stream().filter(p -> p.getNombre().contains(t)).collect(Collectors.toList());
+        List<Producto> productos = productoService.findAll().stream().filter(p -> p.getNombre().toLowerCase().contains(t)).collect(Collectors.toList());
         model.addAttribute("productos", productos);
 
         return "usuario/home";

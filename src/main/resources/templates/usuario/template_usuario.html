@@ -4,30 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
     <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
     <link th:href="@{https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
 <div th:fragment="header">
-    <nav class="navbar navbar-expand-lg sticky-top roboto-navbar" width="100%">
-        <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}">SuperTech</a>
+    <nav class="navbar navbar-expand-lg sticky-top roboto-navbar text-white" width="100%">
+        <div class="container-fluid navbar-inner">
+            <a class="navbar-brand" th:href="@{/}">
+                <img th:src="@{/images/logo.svg}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                SuperTech</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <form class="d-flex my-2 my-lg-0 mx-auto" role="search" method="post" th:action="@{/search}" style="width: 100%; max-width: 400px;">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Buscar producto" name="t">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <form class="d-flex my-2 my-lg-0 mx-auto" method="post" th:action="@{/search}" style="width: 100%; max-width: 400px;">
+                    <input class="form-control me-2" placeholder="Buscar producto" aria-label="Buscar producto" name="t">
+                    <button class="btn bg-white" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                    </button>
                 </form>
 
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link" th:href="@{/getCart}">Carrito</a>
-                    <a class="nav-link" th:href="@{/usuario/login}">Login</a>
+                    <a class="nav-link" th:href="@{/getCart}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/></svg>
+                        Carrito
+                    </a>
+                    <a class="nav-link" th:href="@{/usuario/login}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                    </svg>
+                        Login
+                    </a>
                 </div>
             </div>
         </div>
@@ -35,25 +49,46 @@
 </div>
 
 <div th:fragment="header-user">
-    <nav class="navbar navbar-expand-lg sticky-top roboto-navbar" width="100%">
-        <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}">SuperTech</a>
+    <nav class="navbar navbar-expand-lg sticky-top roboto-navbar text-white" width="100%">
+        <div class="container-fluid navbar-inner">
+            <a class="navbar-brand" th:href="@{/}">
+                <img th:src="@{/images/logo.svg}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                SuperTech
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup1"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup1">
-                <form class="d-flex my-2 my-lg-0 mx-auto" role="search" method="post" th:action="@{/search}"
-                      style="width: 100%; max-width: 400px;">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <form class="d-flex my-2 my-lg-0 mx-auto" method="post" th:action="@{/search}" style="width: 100%; max-width: 400px;">
+                    <input class="form-control me-2" placeholder="Buscar producto" aria-label="Buscar producto" name="t">
+                    <button class="btn bg-white" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                    </button>
                 </form>
 
                 <div class="navbar-nav ms-auto">
-                    <span class="navbar-text me-3" th:if="${nombreUsuario != null}" th:text="'Hola, ' + ${nombreUsuario}"></span>
-                    <a class="nav-link" th:href="@{/getCart}">Carrito</a>
-                    <a class="nav-link" th:href="@{/usuario/compras}">Pedidos</a>
-                    <a class="nav-link" th:href="@{/usuario/cerrar}">Salir</a>
+                    <span class="navbar-text me-3" th:if="${nombreUsuario != null}" th:text="'Hola, ' + ${nombreUsuario}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/></svg>
+                    </span>
+                    <a class="nav-link" th:href="@{/getCart}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/></svg>
+                        Carrito
+                    </a>
+                    <a class="nav-link" th:href="@{/usuario/compras}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0m-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
+                    </svg>
+                        Pedidos
+                    </a>
+                    <a class="nav-link" th:href="@{/usuario/cerrar}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                    </svg>
+                        Salir
+                    </a>
                 </div>
             </div>
         </div>
@@ -62,8 +97,8 @@
 
 
   <div th:fragment="footer">
-      <footer class="py-5 bg-dark fixed-bottom">
-          <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+      <footer class="py-3 sticky-bottom" style="background-color: #303AE3">
+          <div class="container"><p class="m-0 text-center text-white">Copyright &copy; SuperTech 2025</p></div>
       </footer>
   </div>
 

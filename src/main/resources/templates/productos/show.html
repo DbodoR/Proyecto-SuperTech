@@ -10,6 +10,7 @@
     <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
     <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
     <link th:href="@{https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap}" rel="stylesheet">
+    <link rel="website icon" type="png" th:href="@{/images/favicon-16x16.png}">
 </head>
 
 <body>
@@ -22,7 +23,7 @@
 
   <!-- Page Heading/Breadcrumbs -->
   <h1 class="mt-4 mb-3">
-    Spring eCommerce <small>Productos</small>
+    Productos registrados
   </h1>
 
   <ol class="breadcrumb">
@@ -30,11 +31,12 @@
     <li class="breadcrumb-item active">Ver Productos</li>
   </ol>
 
-  <a class="btn btn-primary" th:href="@{/productos/create}" > Crear Producto</a>
+  <a class="btn btn-primary" th:href="@{/productos/create}" > Crear Producto</a><hr/>
   <h2>Productos</h2>
   <table class="table table-responsive">
     <thead>
       <tr>
+        <th scope="col">Imagen</th>
         <th scope="col">Nombre</th>
         <th scope="col">Descripción</th>
         <th scope="col">Inventario</th>
@@ -45,12 +47,13 @@
     </thead>
     <tbody>
       <tr th:each="producto : ${productos}">
+        <td><img th:src="@{/images/{img} (img=${producto.imagen})}" alt="" width="100%" height="100%"/></td>
         <td th:text="${producto.nombre}"></td>
         <td th:text="${producto.descripcion}"></td>
         <td th:text="${producto.cantidad}"></td>
         <td th:text="${producto.precio}"></td>
-        <td><a  class="btn btn-warning" th:href="@{productos/edit/{id} (id=${producto.id})}">Editar</a> </td>
-        <td><a  class="btn btn-danger" th:href="@{productos/delete/{id} (id=${producto.id})}">Eliminar</a> </td>
+        <td><a  class="btn btn-outline-primary" th:href="@{productos/edit/{id} (id=${producto.id})}">Editar</a> </td>
+        <td><a  class="btn btn-outline-primary" th:href="@{productos/delete/{id} (id=${producto.id})}">Eliminar</a> </td>
       </tr>       
     </tbody>
   </table>

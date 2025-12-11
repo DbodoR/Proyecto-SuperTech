@@ -10,6 +10,7 @@
     <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
     <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
     <link th:href="@{https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap}" rel="stylesheet">
+    <link rel="website icon" type="png" th:href="@{/images/favicon-16x16.png}">
 </head>
 
 <body>
@@ -24,7 +25,7 @@
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">
-        Spring eCommerce <small>Compras</small>
+        Pedidos Realizados
       </h1>
 
       <ol class="breadcrumb">
@@ -51,7 +52,7 @@
                   <td th:text="${orden.numero}"></td>
                   <td th:text="${orden.fechaCreacion}"></td>
                   <td th:text="${orden.total}"></td>
-                  <td><a th:href="@{/usuario/detalle/{id} (id=${orden.id})}" class="btn btn-success">Ver Detalle</a></td>
+                  <td><a th:href="@{/usuario/detalle/{id} (id=${orden.id})}" class="btn btn-primary">Detalle de la orden</a></td>
                 </tr>
               </tbody>
             </table>

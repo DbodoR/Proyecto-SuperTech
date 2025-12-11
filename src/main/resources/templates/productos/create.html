@@ -10,6 +10,7 @@
     <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
     <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
     <link th:href="@{https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap}" rel="stylesheet">
+    <link rel="website icon" type="png" th:href="@{/images/favicon-16x16.png}">
 </head>
 
 <body>
@@ -23,7 +24,7 @@
 
   <!-- Page Heading/Breadcrumbs -->
   <h1 class="mt-4 mb-3">
-    Spring eCommerce <small>Productos</small>
+    Agregar producto<hr/>
   </h1>
 
   <ol class="breadcrumb">
@@ -40,6 +41,7 @@
         placeholder="Ingrese el nombre del producto" autocomplete="off" required>
       </div>
     </div>
+      <br>
     <div class="form-group">
       <label class="control-label col-sm-2" for="descripcion">Descripción:</label>
       <div class="col-sm-10">
@@ -48,7 +50,7 @@
         autocomplete="off"> </textarea>
       </div>
     </div>
-
+      <br>
     <div class="form-group">
       <label class="control-label col-sm-2" for="cantidad">Cantidad:</label>
       <div class="col-sm-10">
@@ -57,7 +59,7 @@
         required autocomplete="off">
       </div>
     </div>
-
+      <br>
     <div class="form-group">
       <label class="control-label col-sm-2" for="precio">Precio:</label>
       <div class="col-sm-10">
@@ -65,17 +67,17 @@
         placeholder="Ingrese el precio del producto" autocomplete="off" required>
       </div>
     </div>
-
+      <br>
     <div class="form-group">
       <label class="control-label col-sm-2" for="img">Imagen:</label>
       <div class="col-sm-10">
         <input type="file" class="form-control-file" id="img" name="img">
       </div>
     </div>
-
+      <hr/>
     <div class="row">
       <div class="col-sm-2">
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-primary">
           <span class="glyphicon glyphicon-saved"></span> Guardar
         </button>
       </div>

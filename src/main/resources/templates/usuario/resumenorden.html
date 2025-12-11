@@ -10,6 +10,7 @@
     <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
     <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
     <link th:href="@{https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap}" rel="stylesheet">
+    <link rel="website icon" type="png" th:href="@{/images/favicon-16x16.png}">
 </head>
 
 <body>
@@ -23,7 +24,7 @@
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">
-        Spring eCommerce <small>Resumen de la orden</small>
+        Resumen de la Orden
       </h1>
 
       <ol class="breadcrumb">
@@ -31,60 +32,61 @@
         <li class="breadcrumb-item active">Orden</li>
       </ol>
 
-      <!-- Blog Post -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <div class="row">
-           <div class="col-lg-9">
-             <div class="card-body">
-              <h5 class="card-title">
-                DATOS ORDEN
-              </h5>
-              <h6 th:text="${usuario.nombre}"></h6>
-              <h6 th:text="${usuario.email}"></h6>
-              <h6 th:text="${usuario.direccion}"></h6>
-
-              <h5 class="card-title">
-                PRODUCTOS
-              </h5>
-              <div class="alert alert-light" role="alert">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Producto</th>
-                      <th scope="col">Precio</th>
-                      <th scope="col">Cantidad</th>
-                      <th scope="col">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr th:each="dtorden:${cart}">
-                     <td th:text="${dtorden.nombre}"></td>
-                     <td th:text="${dtorden.precio}"></td>
-                     <td th:text="${dtorden.cantidad}"></td>
-                     <td th:text="${dtorden.total}"></td>
-
-                   </tr>
-                 </tbody>
-               </table>
-             </div>
-
-           </div>
-         </div>
-
-
-         <div class="col-lg-3">
-          <h2 class="card-title">Resumen Orden</h2>
-
-          <ul class="list-group">
-            <li class="list-group-item"><h5 th:text="'Total: ' + ${orden.total}"></h5></li>
-            <a th:href="@{/saveOrder}" class="btn btn-dark">Generar</a>
-          </ul>
+        <div>
+            <h5>
+                DATOS
+            </h5>
+            <h6 th:text="${usuario.nombre}"></h6>
+            <h6 th:text="${usuario.email}"></h6>
+            <h6 th:text="${usuario.direccion}"></h6>
         </div>
-      </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dtorden:${cart}">
+                <td><img th:src="@{/images/{img} (img=${dtorden.producto.imagen})}" alt="Imagen del producto" width="80" height="80"></td>
+                <td th:text="${dtorden.nombre}"></td>
+                <td th:text="${dtorden.precio}"></td>
+                <td th:text="${dtorden.cantidad}"></td>
+                <td th:text="${dtorden.total}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+        <div class="col-lg-3">
+            <h2 class="card-title">Resumen Orden<br></h2><hr />
+            <small>Metodo de pago<br></small><br>
+            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" />
+                <label class="btn btn-outline-primary btn-lg" for="option1">
+                    <div class="d-flex justify-content-between">
+                        <span>VISA </span>
+                        <span>**** 5436</span>
+                    </div>
+                </label>
+                <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" checked />
+                <label class="btn btn-outline-primary btn-lg" for="option2">
+                    <div class="d-flex justify-content-between">
+                        <span>MASTER CARD </span>
+                        <span>**** 5038</span>
+                    </div>
+                </label>
+            </div>
+            <div class="col-lg-3 text-center" style="width: 90%;">
+                <h5 th:text="'Total: $' + ${orden.total}"></h5>
+                <a th:href="@{/saveOrder}" class="btn btn-primary">Pagar</a>
+            </div>
+        </div>
     </div>
-  </div>
-    </div>
+
   <!-- /.container -->
 
   <!-- Footer -->

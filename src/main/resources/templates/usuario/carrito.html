@@ -10,6 +10,7 @@
     <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
     <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
     <link th:href="@{https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap}" rel="stylesheet">
+    <link rel="website icon" type="png" th:href="@{/images/favicon-16x16.png}">
 </head>
 
 <body>
@@ -24,7 +25,7 @@
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">
-        Spring eCommerce <small>Carrito</small>
+        Carrito de Compras
       </h1>
 
       <ol class="breadcrumb">
@@ -40,20 +41,27 @@
             <table class="table">
               <thead>
                 <tr>
+                  <th></th>
                   <th scope="col">Producto</th>
                   <th scope="col">Precio</th>
                   <th scope="col">Cantidad</th>
-                  <th scope="col">Total</th>
-                  <th scope="col">Acción</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr th:each="dorden:${cart}">
+                  <td><img th:src="@{/images/{img} (img=${dorden.producto.imagen})}" alt="Imagen del producto" width="110" height="110"></td>
                   <td th:text="${dorden.nombre}"></td>
                   <td th:text="${dorden.precio}"></td>
                   <td th:text="${dorden.cantidad}"></td>
-                  <td th:text="${dorden.total}"></td>
-                  <td><a th:href="@{/detele/cart/{id} (id=${dorden.producto.id})}" class="btn btn-danger">Quitar</a></td>
+                  <td th:text="'$' + ${dorden.total}"></td>
+                  <td><a th:href="@{/detele/cart/{id} (id=${dorden.producto.id})}" class="">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                      </svg>
+                  </a></td>
                 </tr>
               </tbody>
             </table>
@@ -63,9 +71,9 @@
             <h2 class="card-title">SUBTOTAL</h2>
 
             <ul class="list-group">
-              <li class="list-group-item"><h5 th:text="${orden.total}"></h5></li>
+              <li class="list-group-item"><h5 th:text="'$' + ${orden.total}"></h5></li>
               <a th:href="@{/usuario/login}" th:if="${sesion==null}" class="btn btn-dark">Inicia sesion para proseguir</a>
-              <a th:href="@{/order}" th:unless="${sesion==null}" class="btn btn-dark">Ver Orden</a>
+              <a th:href="@{/order}" th:unless="${sesion==null}" class="btn btn-primary">Realizar compra</a>
             </ul>
           </div>
 

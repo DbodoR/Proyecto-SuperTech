@@ -10,6 +10,7 @@
     <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
     <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
     <link th:href="@{https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap}" rel="stylesheet">
+    <link rel="website icon" type="png" th:href="@{/images/favicon-16x16.png}">
 </head>
 
 <body>
@@ -20,18 +21,44 @@
 
     <!-- Page Content -->
     <div class="container">
-      <!-- Page Heading/Breadcrumbs -->
-      <h1 class="mt-4 mb-3">
-        Spring eCommerce <small>Producto</small>
-      </h1>
+        <h1 class="mt-4 mb-3">
+            Producto
+        </h1>
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
         <li class="breadcrumb-item active">Producto</li>
       </ol>
 
-      <!-- Blog Post -->
-      <div class="card mb-4">
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" th:src="@{/images/{img} (img=${producto.imagen}) }" alt="..." /></div>
+                    <div class="col-md-6">
+                        <h1 class="display-5 fw-bolder" th:text="${producto.nombre}"></h1>
+                        <div class="fs-5 mb-5">
+                            <span th:text="'$' + ${producto.precio}"></span>
+                        </div>
+                        <p class="lead" th:text="${producto.descripcion}"></p>
+                        <div class="d-flex">
+                            <form th:action="@{/cart}" method="post">
+                                <input type="hidden" th:value="${producto.id}" name="id">
+                                <input class="form-control text-center me-3" th:max="${producto.cantidad}" min="1" id="cantidad" name="cantidad" type="number" value="1" style="max-width: 5rem" /><br>
+                                <input class="form-control" th:if="${producto.cantidad == 0}" type="text" value="Stock no disponible" disabled>
+                                <button th:unless="${producto.cantidad == 0}" type="submit"  class="btn btn-outline-primary flex-shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                    </svg>
+                                    Añadir al carrito
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      <!--<div class="card mb-4">
         <div class="card-body">
           <div class="row">
             <div class="col-lg-6">
@@ -62,11 +89,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
 
 
     </div>
-    <!-- /.container -->
 
 <div th:insert="~{usuario/template_usuario.html :: footer}"></div>
 
