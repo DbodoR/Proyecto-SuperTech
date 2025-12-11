@@ -14,7 +14,9 @@
 
 <body>
 
-<div th:insert="~{usuario/template_usuario.html :: header}"></div>
+<div th:insert="~{usuario/template_usuario.html :: header}" th:if="${sesion==null}"></div>
+
+<div th:insert="~{usuario/template_usuario.html :: header-user}" th:unless="${sesion==null}"></div>
 
     <!-- Page Content -->
     <div class="container">
@@ -49,12 +51,12 @@
                   </li>
                   <li class="list-group-item"><h6>
                     Cantidad: <input type="number" id="cantidad" name="cantidad" autocomplete="off"
-                    min="1" th:max="${producto.cantidad}" value="1">
+                    min="1" th:max="${producto.cantidad}" value="0">
                   </h6></li>
                 </ul>
 
-
-                <button type="submit"  class="btn btn-dark">Añadir al carrito </button>
+                <input th:if="${producto.cantidad == 0}" type="text" value="Stock no disponible" disabled>
+                <button th:unless="${producto.cantidad == 0}" type="submit"  class="btn btn-dark">Añadir al carrito </button>
 
               </form>
             </div>

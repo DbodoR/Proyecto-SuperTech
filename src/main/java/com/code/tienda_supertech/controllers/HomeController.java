@@ -55,19 +55,20 @@ public class HomeController {
     }
 
     @GetMapping("productohome/{id}")
-    public String productoHome(@PathVariable Integer id, Model model) {
+    public String productoHome(@PathVariable Integer id, Model model, HttpSession session) {
         logger.info("Id producto enviado como parámetro {}",id);
         Producto producto = new Producto();
         Optional<Producto> productoOptional = productoService.get(id);
         producto = productoOptional.get();
 
         model.addAttribute("producto", producto);
+        model.addAttribute("sesion", session.getAttribute("idusuario"));
 
         return "usuario/productohome";
     }
 
     @PostMapping("/cart")
-    public String addCart(@RequestParam Integer id, @RequestParam Integer cantidad, Model model) {
+    public String addCart(@RequestParam Integer id, @RequestParam Integer cantidad, Model model, HttpSession session) {
         DetalleOrden detalleOrden = new DetalleOrden();
         Producto producto = new Producto();
         double sumaTotal = 0;
@@ -94,6 +95,7 @@ public class HomeController {
         orden.setTotal(sumaTotal);
         model.addAttribute("cart", detalleOrdenes);
         model.addAttribute("orden", orden);
+        model.addAttribute("sesion", session.getAttribute("idusuario"));
 
         return "usuario/carrito";
     }
@@ -155,7 +157,34 @@ public class HomeController {
 
         for (DetalleOrden dt : detalleOrdenes) {
             dt.setOrden(orden);
-            detalleOrdenService.save(dt);
+
+            Integer idProducto = dt.getProducto().getId();
+            Optional<Producto> prodOpt = productoService.get(idProducto);
+            if (prodOpt.isPresent()) {
+                Producto producto = prodOpt.get();
+
+                int stockActual = producto.getCantidad();
+                if (stockActual >= dt.getCantidad()) {
+                    producto.setCantidad((int) (stockActual - dt.getCantidad()));
+                    productoService.save(producto);
+                    detalleOrdenService.save(dt);
+                } else {
+                    // marcar rollback y retornar al carrito con mensaje
+                    org.springframework.transaction.interceptor.TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    model.addAttribute("error", "No hay suficiente stock para: " + producto.getNombre());
+                    model.addAttribute("cart", detalleOrdenes);
+                    model.addAttribute("orden", orden);
+                    model.addAttribute("usuario", usuario);
+                    return "usuario/carrito";
+                }
+            } else {
+                org.springframework.transaction.interceptor.TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                model.addAttribute("error", "Producto no encontrado.");
+                model.addAttribute("cart", detalleOrdenes);
+                model.addAttribute("orden", orden);
+                model.addAttribute("usuario", usuario);
+                return "usuario/carrito";
+            }
         }
 
         orden = new Orden();
