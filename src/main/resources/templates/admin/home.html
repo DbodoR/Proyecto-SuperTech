@@ -29,7 +29,7 @@
                 <div class="card h-100">
 
                     <span th:href="@{/productohome/{id} (id=${producto.id})}" class="btn" disabled>
-                        <img class="card-img-top" th:src="@{/images/{img} (img=${producto.imagen})}" alt="">
+                        <img class="card-img-top" th:src="@{/images/{img} (img=${producto.imagen})}" alt="" height="338px" width="400px">
                         <div class="card-body">
                             <p class="card-title" th:text="${producto.nombre}"></p>
                             <span class="card-text" th:text="'$' + ${producto.precio}"></span>
