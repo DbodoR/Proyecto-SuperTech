@@ -1,9 +1,17 @@
-FROM alpine/java:21-jdk
+FROM eclipse-temurin:21-jdk AS builder
 LABEL authors="juanj"
 
 WORKDIR /app
 
-COPY target/tienda-supertech-0.0.1-SNAPSHOT.jar app.jar
+COPY . .
+
+RUN ./mvnw clean package -DskipTests
+
+FROM eclipse-temurin:23-jre
+
+WORKDIR /app
+
+COPY --from=builder /app/target/*.jar app.jar
 
 EXPOSE 8080
 
