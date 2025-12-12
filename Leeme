@@ -1,0 +1,16 @@
+//Necesario para inicializar el proyecto en local
+
+java jdk 21
+
+maven 4.0.0 ( asegurarse de cargar todas las dependencias )
+
+ruta de la pagina localhost:8080
+
+iniciar sesion con admin para visualizar las vistas de admin
+correo = admin@gmail.com
+contraseña = 123
+
+puede crear nuevo usuario si lo desea o usar uno ya ingresado en la base de datos ( es de tipo user )
+
+correo = usuario1@gmail.com
+contraseña = 123
